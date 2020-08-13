@@ -148,12 +148,12 @@ export default {
         try {
           await this.GET_USER_INFO();
           await this.GET_DISTRICTS();
-          await this.GET_SYSTEM_CLUBS();
-          await this.GET_ACTIVITY_CATEGORIES();
         } catch (e) {
           this.$throw(e, this);
         }
       }
+      await this.GET_SYSTEM_CLUBS();
+      await this.GET_ACTIVITY_CATEGORIES();
     }
   },
   watch: {
