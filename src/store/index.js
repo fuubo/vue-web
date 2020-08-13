@@ -9,8 +9,9 @@ Vue.use(Vuex)
 const state = {
   userInfo: null,
   islogin: null,
-  menu: null,
-  districts: null
+  districts: null,
+  clubs: null,
+  activityCategories: null,
 }
 
 export default new Vuex.Store({

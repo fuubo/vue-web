@@ -105,7 +105,7 @@
           <div class="col-md-8 col-sm-12 col-xs-24">
             <div class="destination-box">
               <div class="box-cover">
-                <a href="#">
+                <a :href="`/activityInfo/6`">
                   <img src="../assets/img/destination-3.jpg" alt="destination image" />
                 </a>
               </div>

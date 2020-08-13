@@ -3,7 +3,7 @@
     <header class="main-header">
       <div class="container">
         <div class="header-content">
-          <a href="index.html">
+          <a href="/index.html">
             <img src="../assets/img/site-identity.png" alt="site identity" />
           </a>
           <nav class="site-nav">
@@ -140,11 +140,11 @@ export default {
   data() {
     return {
       activeIndex: null,
-      isCollapse: false
+      isCollapse: false,
     };
   },
   computed: {
-    ...mapState(["islogin", "userInfo", "menu"])
+    ...mapState(["islogin", "userInfo", "menu"]),
   },
   async created() {
     this.activeIndex = "/" + this.$router.currentRoute.fullPath.split("/")[1];
@@ -153,6 +153,8 @@ export default {
         try {
           await this.GET_USER_INFO();
           await this.GET_DISTRICTS();
+          await this.GET_SYSTEM_CLUBS();
+          await this.GET_ACTIVITY_CATEGORIES();
         } catch (e) {
           this.$throw(e, this);
         }
@@ -160,11 +162,16 @@ export default {
     }
   },
   watch: {
-    $route: "changeIndex"
+    $route: "changeIndex",
   },
   methods: {
     ...mapMutations(["USERLOGOUT"]),
-    ...mapActions(["GET_USER_INFO","GET_DISTRICTS"]),
+    ...mapActions([
+      "GET_USER_INFO",
+      "GET_DISTRICTS",
+      "GET_SYSTEM_CLUBS",
+      "GET_ACTIVITY_CATEGORIES",
+    ]),
     changeIndex() {
       this.activeIndex = "/" + this.$router.currentRoute.fullPath.split("/")[1];
     },
@@ -185,8 +192,8 @@ export default {
     },
     goto(to) {
       this.$router.push(to);
-    }
-  }
+    },
+  },
 };
 </script>
 

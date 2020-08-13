@@ -11,6 +11,19 @@ const getSystemDistrictList = async (param) => {
   }
 }
 
+const getSystemClubMap = async (param) => {
+  let result = await request.post('/system/getSystemClubMap', param)
+  if (result.code === 0) {
+    return result.data
+  } else {
+    throw {
+      code: 100,
+      message: result.message
+    }
+  }
+}
+
 export {
   getSystemDistrictList,
+  getSystemClubMap,
 }

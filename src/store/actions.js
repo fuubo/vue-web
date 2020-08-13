@@ -2,13 +2,16 @@ import {
   getUser,
   login,
   logout,
-  getSystemDistrictList
+  getSystemDistrictList,
+  getSystemClubMap,
+  getActivityCategoryMap,
 } from '@/api'
 import {
   SET_INFO,
   SET_LOGIN_STATE,
-  SET_MENU,
-  SET_DISTRICTS
+  SET_DISTRICTS,
+  SET_SYSTEM_CLUB_MAP,
+  SET_ACTIVITY_CATEGORY_MAP,
 } from './mutation-types.js'
 import {
   LOGINAUTHTOKEN
@@ -50,10 +53,22 @@ const actions = {
   }) {
     await logout()
     commit(SET_INFO, null)
-    commit(SET_MENU, null)
     commit(SET_LOGIN_STATE, null)
     localStorage.removeItem(LOGINAUTHTOKEN)
-  }
+  },
+  async GET_SYSTEM_CLUBS({
+    commit
+  }) {
+    let clubs = await getSystemClubMap();
+    commit(SET_SYSTEM_CLUB_MAP, clubs)
+  },
+
+  async GET_ACTIVITY_CATEGORIES({
+    commit
+  }) {
+    let categories = await getActivityCategoryMap();
+    commit(SET_ACTIVITY_CATEGORY_MAP, categories)
+  },
 }
 
 export default actions
