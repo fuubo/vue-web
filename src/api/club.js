@@ -1,9 +1,7 @@
 import request from './request'
 
-
-const addClubTrip = async (param) => {
-
-  let result = await request.post('/club/addClubTrip', param)
+const getActivityInfo = async (id) => {
+  let result = await request.post('/activity/info/'+id)
   if (result.code === 0) {
     return result.data
   } else {
@@ -14,8 +12,8 @@ const addClubTrip = async (param) => {
   } 
 }
 
-const getActivityInfo = async (id) => {
-  let result = await request.post('/activity/info/'+id)
+const getActivityList = async () => {
+  let result = await request.post('/activity/list')
   if (result.code === 0) {
     return result.data
   } else {
@@ -39,7 +37,7 @@ const getActivityCategoryMap = async (params) => {
 }
 
 export {
-  addClubTrip,
   getActivityInfo,
   getActivityCategoryMap,
+  getActivityList,
 }

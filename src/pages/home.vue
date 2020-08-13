@@ -54,180 +54,42 @@
         </div>
       </section>
       <!-- Destinations Section -->
-      <section class="section section-destination">
+      <section class="section section-destination" v-if="list">
         <!-- Title -->
         <div class="section-title">
           <div class="container">
             <h2 class="title">最新户外活动推荐</h2>
-            <p class="sub-title">2020年3月</p>
+            <p class="sub-title">{{new Date().getFullYear()}}年{{new Date().getMonth()+1}}月</p>
           </div>
         </div>
 
         <!-- Content -->
         <b-container>
-          <div class="col-md-16 col-xs-24">
+          <div
+            v-for="(item,index) in list"
+            :key="index"
+            :class="(index==0?'col-md-16':'col-md-8 col-sm-12')+' col-xs-24'"
+          >
             <div class="destination-box">
               <div class="box-cover">
-                <a href="#">
-                  <img src="../assets/img/destination-1.jpg" alt="destination image" />
+                <a :href="`/activityInfo/${item.id}`">
+                  <img :src="item.picture" style="height:330px;" alt="destination image" />
                 </a>
               </div>
-              <span class="boats-qty icon-location">FINDERJ</span>
+              <span class="boats-qty icon-location">{{item.province}}</span>
 
               <div class="box-details">
                 <div class="box-meta">
-                  <h4 class="city">探索加拿大的孤岛</h4>
-                  <p class="country">深入了解著名的探险家和她在该领域的合作伙伴关系</p>
+                  <h4 class="city">{{item.title}}</h4>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="col-md-8 col-sm-12 col-xs-24">
-            <div class="destination-box">
-              <div class="box-cover">
-                <a href="#">
-                  <img src="../assets/img/destination-2.jpg" alt="destination image" />
-                </a>
-              </div>
-
-              <span class="boats-qty no-icon icon-location">FINDERJ</span>
-
-              <div class="box-details">
-                <div class="box-meta">
-                  <h4 class="city">Ibiza</h4>
-                  <p class="country">Spain</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-8 col-sm-12 col-xs-24">
-            <div class="destination-box">
-              <div class="box-cover">
-                <a :href="`/activityInfo/6`">
-                  <img src="../assets/img/destination-3.jpg" alt="destination image" />
-                </a>
-              </div>
-
-              <span class="boats-qty">543</span>
-
-              <div class="box-details">
-                <div class="box-meta">
-                  <h4 class="city">Palma de Mallorca</h4>
-                  <p class="country">Spain</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-8 col-sm-12 col-xs-24">
-            <div class="destination-box">
-              <div class="box-cover">
-                <a href="#">
-                  <img src="../assets/img/destination-4.jpg" alt="destination image" />
-                </a>
-              </div>
-
-              <span class="boats-qty">495</span>
-
-              <div class="box-details">
-                <div class="box-meta">
-                  <h4 class="city">Portofino</h4>
-                  <p class="country">Italy</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-8 col-sm-12 col-xs-24">
-            <div class="destination-box">
-              <div class="box-cover">
-                <a href="#">
-                  <img src="../assets/img/destination-5.jpg" alt="destination image" />
-                </a>
-              </div>
-
-              <span class="boats-qty">402</span>
-
-              <div class="box-details">
-                <div class="box-meta">
-                  <h4 class="city">Port Hercules</h4>
-                  <p class="country">Monaco</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div v-show="showMoreA">
-            <div class="col-md-8 col-sm-12 col-xs-24">
-              <div class="destination-box">
-                <div class="box-cover">
-                  <a href="#">
-                    <img src="../assets/img/destination-4.jpg" alt="destination image" />
-                  </a>
-                </div>
-
-                <span class="boats-qty">495</span>
-
-                <div class="box-details">
-                  <div class="box-meta">
-                    <h4 class="city">Portofino</h4>
-                    <p class="country">Italy</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-8 col-sm-12 col-xs-24">
-              <div class="destination-box">
-                <div class="box-cover">
-                  <a href="#">
-                    <img src="../assets/img/destination-5.jpg" alt="destination image" />
-                  </a>
-                </div>
-
-                <span class="boats-qty">402</span>
-
-                <div class="box-details">
-                  <div class="box-meta">
-                    <h4 class="city">Port Hercules</h4>
-                    <p class="country">Monaco</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-8 col-sm-12 col-xs-24">
-              <div class="destination-box">
-                <div class="box-cover">
-                  <a href="#">
-                    <img src="../assets/img/destination-3.jpg" alt="destination image" />
-                  </a>
-                </div>
-
-                <span class="boats-qty">543</span>
-
-                <div class="box-details">
-                  <div class="box-meta">
-                    <h4 class="city">Palma de Mallorca</h4>
-                    <p class="country">Spain</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="align-center">
-            <b-button @click="showMore1"  variant="outline-dark">
-              <span class="text">查看更多</span>
-            </b-button>
           </div>
         </b-container>
       </section>
 
       <!-- Boats Section -->
-      <section class="section section-boats">
+      <section class="section section-boats" v-show="false">
         <!-- Title -->
         <div class="section-title">
           <div class="container">
@@ -257,110 +119,8 @@
               </div>
             </div>
           </div>
-
-          <div class="col-sm-12 col-xs-24">
-            <div class="boat-box">
-              <div class="box-cover">
-                <img src="../assets/img/boat-2.jpg" alt="destination image" />
-              </div>
-
-              <span class="boat-price">€950 / day</span>
-
-              <div class="box-details">
-                <div class="box-meta">
-                  <h4 class="boat-name">Sense 55</h4>
-                  <ul class="clean-list boat-meta">
-                    <li class="location">Portofino, Itali</li>
-                    <li class="berths">12 Berths</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-12 col-xs-24">
-            <div class="boat-box">
-              <div class="box-cover">
-                <img src="../assets/img/boat-3.jpg" alt="destination image" />
-              </div>
-
-              <span class="boat-price">€820 / day</span>
-
-              <div class="box-details">
-                <div class="box-meta">
-                  <h4 class="boat-name">Cruiser 51</h4>
-                  <ul class="clean-list boat-meta">
-                    <li class="location">Palma de Mallorca, Spain</li>
-                    <li class="berths">10 Berths</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-12 col-xs-24">
-            <div class="boat-box">
-              <div class="box-cover">
-                <img src="../assets/img/boat-4.jpg" alt="destination image" />
-              </div>
-
-              <span class="boat-price">€400 / day</span>
-
-              <div class="box-details">
-                <div class="box-meta">
-                  <h4 class="boat-name">Cruiser 41S</h4>
-                  <ul class="clean-list boat-meta">
-                    <li class="location">Lisbon, Portugal</li>
-                    <li class="berths">8 Berths</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div v-show="showMoreB">
-            <div class="col-sm-12 col-xs-24">
-              <div class="boat-box">
-                <div class="box-cover">
-                  <img src="../assets/img/boat-2.jpg" alt="destination image" />
-                </div>
-
-                <span class="boat-price">€950 / day</span>
-
-                <div class="box-details">
-                  <div class="box-meta">
-                    <h4 class="boat-name">Sense 55</h4>
-                    <ul class="clean-list boat-meta">
-                      <li class="location">Portofino, Itali</li>
-                      <li class="berths">12 Berths</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-12 col-xs-24">
-              <div class="boat-box">
-                <div class="box-cover">
-                  <img src="../assets/img/boat-1.jpg" alt="destination image" />
-                </div>
-
-                <span class="boat-price">€580 / day</span>
-
-                <div class="box-details">
-                  <div class="box-meta">
-                    <h4 class="boat-name">Delphia 47</h4>
-                    <ul class="clean-list boat-meta">
-                      <li class="location">Gdansk, Poland</li>
-                      <li class="berths">8 Berths</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div class="align-center">
-            <b-button variant="outline-dark" @click="showMore2">
+            <b-button variant="outline-dark">
               <span class="text-small">查看更多</span>
             </b-button>
           </div>
@@ -373,8 +133,17 @@
           <div class="text align-center">
             <h1>与我们合作</h1>
             <p>我们渴望每位同样专注于户外运动的供应商加盟</p>
-
-            <a href="#" class="btn btn-special no-icon size-2x">发布活动</a>
+            <a href="#" v-b-modal.telephone class="btn btn-special no-icon size-2x">联系我们</a>
+            <b-modal id="telephone" title="联系电话">
+              <p class="my-4 text-center">
+                <a
+                  href="tel:18211026907"
+                  v-b-tooltip
+                  title="点击立即拨打"
+                  style="font-size:25px"
+                >+86 182 1102 6907</a>
+              </p>
+            </b-modal>
           </div>
         </div>
       </div>
@@ -383,23 +152,23 @@
 </template>
 
 <script>
+import { getActivityList } from "@/api";
 export default {
   name: "Home",
   data() {
     return {
-      showMoreA: false,
-      showMoreB: false
+      list: null,
     };
   },
+  created() {
+    this.getData();
+  },
   methods: {
-    showMore1() {
-      this.showMoreA = true;
+    async getData() {
+      let list = await getActivityList();
+      this.list = list;
     },
-
-    showMore2() {
-      this.showMoreB = true;
-    }
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

@@ -8,7 +8,6 @@ import home from '@/pages/home'
 import login from '@/pages/login'
 import notFound from '@/pages/404'
 
-const createActivity = () => import('@/pages/activity/createActivity');
 const activityInfo = () => import('@/pages/activity/activityInfo');
 
 Vue.use(Router)
@@ -47,12 +46,6 @@ let router = new Router({
           path: '/',
           name: '首页',
           component: home
-        },
-        {
-          path: '/createActivity',
-          name: '发布活动',
-          component: createActivity,
-          meta: { requiresAuth: true }
         },
         {
           path: '/activityInfo/:id',

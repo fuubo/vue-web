@@ -7,11 +7,6 @@
             <img src="../assets/img/site-identity.png" alt="site identity" />
           </a>
           <nav class="site-nav">
-            <ul class="clean-list site-links">
-              <li>
-                <a :href="`/createActivity`">发布活动</a>
-              </li>
-            </ul>
             <b-dropdown
               v-if="islogin && userInfo"
               id="dropdown-1"
