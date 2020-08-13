@@ -26,7 +26,7 @@
             <p><b-icon icon="people-fill"></b-icon> 俱乐部名：<strong>{{clubs && clubs[data.clubId]}}</strong></p>
             <p><b-icon icon="grid-fill"></b-icon> 活动类型：<strong>{{activityCategories && activityCategories[data.categoryId]}}</strong></p>  
           </div>
-          <b-button size="lg" v-b-modal.telephone>报名咨询</b-button>
+          <b-button size="lg" v-b-modal.telephone variant="outline-dark">报名咨询</b-button>
           <b-modal id="telephone" title="报名电话">
             <p class="my-4 text-center">
               <a href="tel:18211026907" v-b-tooltip title="点击立即拨打" style="font-size:25px">+86 182 1102 6907</a>
