@@ -1,8 +1,8 @@
 <template>
   <div class="activityInfo" v-if="id">
-    <b-container class="bv-example-row" style="padding-top: 120px;padding-bottom: 50px;">
+    <b-container class="bv-example-row" style="padding-top: 80px;padding-bottom: 50px;">
       <b-row>
-        <b-col cols="12" lg="6" class="pt-1">
+        <b-col cols="12" lg="6" class="pt-3">
           <b-carousel
             id="carousel-1"
             v-model="slide"
@@ -17,7 +17,7 @@
             <b-carousel-slide v-for="item in carouselPictures" :key="item.url" :img-src="item.url"></b-carousel-slide>
           </b-carousel>
         </b-col>
-        <b-col cols="12" v-if="data" lg="6" class="pt-1">
+        <b-col cols="12" v-if="data" lg="6" class="pt-3">
           <h1>{{data.title}}</h1>
           <div class="ml-4" style="font-style:italic;text-decoration:underline">
             <p><b-icon icon="cursor-fill"></b-icon> 集合城市：<strong>{{data.province}}{{data.city}}</strong></p>
@@ -35,7 +35,7 @@
         </b-col>
       </b-row>
       <b-row v-if="data" class="mt-3">
-        <b-tabs content-class="mt-3 ml-3">
+        <b-tabs content-class="mt-3 pl-3 pr-3">
           <b-tab v-if="data.contents.destinationDetail" title="目的地介绍" active>
             <p v-html="data.contents.destinationDetail.contentText"></p>
           </b-tab>
