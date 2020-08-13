@@ -80,7 +80,6 @@ export default {
   methods: {
     async getData(id) {
       let result = await getActivityInfo(id);
-      console.log(JSON.stringify(result));
       this.data = result;
       this.carouselPictures = [{ url: result.picture }];
     },
