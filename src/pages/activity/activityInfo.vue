@@ -1,8 +1,8 @@
 <template>
   <div class="activityInfo" v-if="id">
-    <b-container class="bv-example-row" style="padding: 120px 0;">
+    <b-container class="bv-example-row" style="padding-top: 120px;padding-bottom: 50px;">
       <b-row>
-        <b-col>
+        <b-col cols="12" lg="6" class="pt-1">
           <b-carousel
             id="carousel-1"
             v-model="slide"
@@ -17,7 +17,7 @@
             <b-carousel-slide v-for="item in carouselPictures" :key="item.url" :img-src="item.url"></b-carousel-slide>
           </b-carousel>
         </b-col>
-        <b-col v-if="data">
+        <b-col cols="12" v-if="data" lg="6" class="pt-1">
           <h1>{{data.title}}</h1>
           <div class="ml-4" style="font-style:italic;text-decoration:underline">
             <p><b-icon icon="cursor-fill"></b-icon> 集合城市：<strong>{{data.province}}{{data.city}}</strong></p>
@@ -26,7 +26,7 @@
             <p><b-icon icon="people-fill"></b-icon> 俱乐部名：<strong>{{clubs && clubs[data.clubId]}}</strong></p>
             <p><b-icon icon="grid-fill"></b-icon> 活动类型：<strong>{{activityCategories && activityCategories[data.categoryId]}}</strong></p>  
           </div>
-          <b-button size="lg" v-b-modal.telephone variant="outline-dark">报名咨询</b-button>
+          <b-button size="lg" v-b-modal.telephone variant="outline-dark" class="ml-3">报名咨询</b-button>
           <b-modal id="telephone" title="报名电话">
             <p class="my-4 text-center">
               <a href="tel:18211026907" v-b-tooltip title="点击立即拨打" style="font-size:25px">+86 182 1102 6907</a>
