@@ -8,7 +8,8 @@ import home from '@/pages/home'
 import login from '@/pages/login'
 import notFound from '@/pages/404'
 
-import createActivity from '@/pages/activity/createActivity'
+const createActivity = () => import('@/pages/activity/createActivity');
+const activityInfo = () => import('@/pages/activity/activityInfo');
 
 Vue.use(Router)
 
@@ -52,12 +53,25 @@ let router = new Router({
           name: '发布活动',
           component: createActivity,
           meta: { requiresAuth: true }
+        },
+        {
+          path: '/activityInfo/:id',
+          name: '活动详情',
+          props: true,
+          component: activityInfo
         }
       ]
     }
   ]
 })
-
+router.onError((error) => {
+  const pattern = /Loading chunk (\d)+ failed/g;
+  const isChunkLoadFailed = error.message.match(pattern);
+  const targetPath = router.history.pending.fullPath;
+  if (isChunkLoadFailed) {
+    router.replace(targetPath);
+  }
+});
 router.beforeEach((to, from, next) => {
   let login = window.localStorage.getItem(LOGINAUTHTOKEN)
   if (to.matched.some(record => record.meta.requiresAuth) && (!login)) {
