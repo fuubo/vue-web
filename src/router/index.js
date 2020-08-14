@@ -9,6 +9,7 @@ import login from '@/pages/login'
 import notFound from '@/pages/404'
 
 const activityInfo = () => import('@/pages/activity/activityInfo');
+const activityList = () => import('@/pages/activity/activityList');
 
 Vue.use(Router)
 
@@ -52,6 +53,12 @@ let router = new Router({
           name: '活动详情',
           props: true,
           component: activityInfo
+        },
+        {
+          path: '/activityList/:keyword?',
+          name: '活动列表',
+          props: true,
+          component: activityList
         }
       ]
     }

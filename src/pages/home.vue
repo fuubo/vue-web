@@ -14,7 +14,7 @@
                 <input
                   type="text"
                   name="destination"
-                  value
+                  v-model="keyword"
                   class="form-input check-value"
                   placeholder="试试搜索想要去的城市？"
                 />
@@ -22,6 +22,7 @@
                   type="button"
                   name="destination-submit"
                   class="form-submit btn btn-special"
+                  @click="search"
                 >搜索活动</button>
               </div>
             </form>
@@ -84,6 +85,11 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="align-center" v-if="total > 5">
+            <b-button variant="outline-dark" @click="$router.push({ path:'/activityList'  })">
+              <span class="text-small">查看更多</span>
+            </b-button>
           </div>
         </b-container>
       </section>
@@ -157,7 +163,9 @@ export default {
   name: "Home",
   data() {
     return {
+      keyword: null,
       list: null,
+      total: 0,
     };
   },
   created() {
@@ -165,8 +173,21 @@ export default {
   },
   methods: {
     async getData() {
-      let list = await getActivityList();
-      this.list = list;
+      let param = {
+        recommendFlag: true
+      };
+      let result = await getActivityList(param);
+      this.list = result.list;
+      this.total = result.pagination.total;
+    },
+    search(){
+      let path = '/activityList';
+      if(this.keyword){
+        path = path + '/' + this.keyword;
+      }
+      this.$router.push({
+        path:path
+      });
     },
   },
 };
