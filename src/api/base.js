@@ -1,9 +1,9 @@
 import request from './request'
-let OSS = require('ali-oss');
+let OSS = require('ali-oss')
 
 const login = async (loginData) => {
   let result = await request.post('/login/login', loginData)
-  if (result.code === 0) {
+  if (result.code === 200) {
     return result
   } else {
     throw {
@@ -20,7 +20,7 @@ const logout = async () => {
 
 const getUser = async () => {
   let result = await request.post('/login/currentUser')
-  if (result.code === 0) {
+  if (result.code === 200) {
     return result
   } else {
     throw {
@@ -32,7 +32,7 @@ const getUser = async () => {
 
 const getValidateCode = async (param) => {
   let result = await request.post('/login/getValidateCode', param)
-  if (result.code === 0) {
+  if (result.code === 200) {
     return result
   } else {
     throw {
@@ -44,7 +44,7 @@ const getValidateCode = async (param) => {
 
 const checkCaptcha = async (param) => {
   let result = await request.post('/login/checkCaptcha', param)
-  if (result.code === 0) {
+  if (result.code === 200) {
     return result
   } else {
     throw {
@@ -69,7 +69,7 @@ const getAliOssToken = async () => {
 
   if (!token) {
     let result = await request.post('/aliOss/getToken')
-    if (result.code === 0) {
+    if (result.code === 200) {
       window.localStorage.setItem('ossToken', JSON.stringify(result.data))
       return result.data
     } else {
@@ -92,10 +92,10 @@ const uploadOSS = async (url, file, bucket) => {
     stsToken: data.securityToken,
     bucket: bucket,
     secure: true
-  });
-  let type = file.name.split(".").pop();
-  let result = await client.put(url + "." + type, file);
-  return result.url;
+  })
+  let type = file.name.split(".").pop()
+  let result = await client.put(url + "." + type, file)
+  return result.url
 }
 
 
@@ -108,8 +108,8 @@ const getOSSfile = async (url) => {
     stsToken: data.securityToken,
     bucket: 'retry-image',
     secure: true
-  });
-  let result = await client.signatureUrl(url);
+  })
+  let result = await client.signatureUrl(url)
   return result
 }
 

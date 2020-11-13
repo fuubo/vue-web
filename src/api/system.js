@@ -1,7 +1,7 @@
 import request from './request'
 const getSystemDistrictList = async (param) => {
   let result = await request.post('/system/getSystemDistrictList', param)
-  if (result.code === 0) {
+  if (result.code === 200) {
     return result.data
   } else {
     throw {
@@ -13,7 +13,7 @@ const getSystemDistrictList = async (param) => {
 
 const getSystemClubMap = async (param) => {
   let result = await request.post('/system/getSystemClubMap', param)
-  if (result.code === 0) {
+  if (result.code === 200) {
     return result.data
   } else {
     throw {
