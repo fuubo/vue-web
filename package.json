@@ -10,7 +10,7 @@
   "dependencies": {
     "ali-oss": "^6.5.1",
     "area-data": "^5.0.6",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap-vue": "^2.9.0",
     "browser-image-compression": "^1.0.9",
     "core-js": "^3.6.4",
